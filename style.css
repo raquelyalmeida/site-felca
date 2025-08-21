@@ -1,92 +1,150 @@
-/* Estilos gerais */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ====== tema ====== */
+:root{
+  --bg1: #d81aff;
+  --bg2: #b44bff;
+  --ink: #111;
+  --panel: rgba(255,255,255,.08);
+  --radius-pill: 999px;
+  --radius-soft: 28px;
+  --stroke: 6px;
+  --maxw: 1200px;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+/* reset mínimo */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--ink);
+  background: radial-gradient(1400px 900px at 20% 0%, var(--bg2), var(--bg1));
+  background-attachment: fixed;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    width: 100%;
-    text-align: center;
-    padding: 10px;
+/* contorno grosso estilo “desenho” */
+.stroke{
+  outline: var(--stroke) solid var(--ink);
+  outline-offset: -4px;
 }
 
-h1 {
-    margin: 0;
-    font-size: 24px;
+/* topo */
+.topbar{
+  max-width: var(--maxw);
+  margin: 22px auto 18px;
+  padding: 14px 18px;
+  background: var(--panel);
+  border-radius: 18px;
+}
+.nav{
+  display:flex;
+  justify-content:center;
+  gap: 26px;
+}
+.pill{
+  display:inline-block;
+  padding: 10px 26px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,.10);
+  text-decoration:none;
+  font-weight: 600;
+  color: var(--ink);
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+  outline-offset: -2px;
+}
+.pill:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.16);
+  box-shadow: 0 6px 0 0 var(--ink);
 }
 
-/* Contêiner principal */
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    max-width: 1200px;
-    margin-top: 20px;
+/* palco principal */
+.wrap{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 18px 60px;
+}
+.stage{
+  display:grid;
+  grid-template-columns: 220px 1fr 220px;
+  gap: 26px;
+  padding: 28px;
+  background: rgba(255,255,255,.06);
+  border-radius: 32px;
 }
 
-/* Imagens laterais */
-.side-images {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 15%;
+/* colunas laterais */
+.rail{
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.06);
+  display:flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.thumb{
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #fff3;
 }
 
-.side-images img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+/* área central com imagem e oval */
+.viewer{
+  position: relative;
+  border-radius: 36px;
+  background: rgba(255,255,255,.06);
+  padding: 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.viewer::before{
+  /* moldura externa interna (como na referência) */
+  content:"";
+  position:absolute;
+  inset: 12px;
+  border-radius: 30px;
+  outline: var(--stroke) solid var(--ink);
+  outline-offset: -6px;
+  pointer-events: none;
+}
+.hero{
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 28px;
 }
 
-.side-images img:hover {
-    transform: scale(1.05);
+/* oval por cima da imagem (somente moldura) */
+.oval{
+  position:absolute;
+  inset: 14% 18%;
+  border-radius: 50% / 37%;
+  background: transparent;
+  pointer-events: none;
 }
 
-/* Imagem principal */
-.main-container {
-    width: 65%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* rodapé */
+.foot{
+  text-align:center;
+  padding: 24px 12px 40px;
+  color:#000;
+  opacity:.9;
 }
 
-.main-image {
-    width: 100%;
-    max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+/* responsivo */
+@media (max-width: 1100px){
+  .stage{ grid-template-columns: 180px 1fr 180px }
 }
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .side-images {
-        width: 100%;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .main-container {
-        width: 100%;
-    }
+@media (max-width: 900px){
+  .stage{ grid-template-columns: 1fr; }
+  .oval{ inset: 16% 12% }
+}
+@media (max-width: 560px){
+  .pill{ padding: 8px 18px }
+  .viewer{ padding: 12px }
+  .oval{ inset: 18% 10% }
 }

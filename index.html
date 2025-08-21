@@ -1,32 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Felca</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Layout rosa com molduras</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        Site Felca
-    </header>
-    
-    <div class="container">
-        <div class="side-images">
-            <img src="1" alt="Imagem 1">
-            <img src="2" alt="Imagem 2">
-            <img src="3" alt="Imagem 3">
-        </div>
+  <header class="topbar stroke">
+    <nav class="nav">
+      <a class="pill stroke" href="#sobre">Sobre</a>
+      <a class="pill stroke" href="#contato">Fale Conosco</a>
+    </nav>
+  </header>
 
-        <div class="main-container">
-            <img src="4"alt="Imagem Grande" class="main-image">
-        </div>
+  <main class="wrap">
+    <section class="stage stroke">
+      <!-- coluna esquerda -->
+      <aside class="rail stroke">
+        <img class="thumb stroke" src="img/left-1.jpg" alt="Foto 1" />
+        <img class="thumb stroke" src="img/left-2.jpg" alt="Foto 2" />
+        <img class="thumb stroke" src="img/left-3.jpg" alt="Foto 3" />
+      </aside>
 
-        <div class="side-images">
-            <img src="5" alt="Imagem 4">
-            <img src="6" alt="Imagem 5">
-            <img src="7.jpeg" alt="Imagem 6">
-        </div>
-    </div>
+      <!-- player/área central com oval -->
+      <div class="viewer">
+        <img class="hero" src="img/center.jpg" alt="Imagem principal" />
+        <div class="oval stroke"></div>
+      </div>
+
+      <!-- coluna direita -->
+      <aside class="rail stroke">
+        <img class="thumb stroke" src="img/right-1.jpg" alt="Foto 4" />
+        <img class="thumb stroke" src="img/right-2.jpg" alt="Foto 5" />
+        <img class="thumb stroke" src="img/right-3.jpg" alt="Foto 6" />
+      </aside>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Feito no estilo solicitado. Personalize as imagens na pasta <code>img/</code>.</p>
+  </footer>
 </body>
 </html>
