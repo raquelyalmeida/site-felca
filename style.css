@@ -1,8 +1,8 @@
 /* ====== tema ====== */
 :root{
-  --bg1: #d81aff;
+  --bg1: rgba(63, 34, 69, 1);
   --bg2: #b44bff;
-  --ink: #111;
+  --ink: #df91fb;
   --panel: rgba(255,255,255,.08);
   --radius-pill: 999px;
   --radius-soft: 28px;
@@ -131,7 +131,7 @@ body{
 .foot{
   text-align:center;
   padding: 24px 12px 40px;
-  color:#000;
+  color:#320b0b;
   opacity:.9;
 }
 
