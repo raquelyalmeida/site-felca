@@ -1,1 +1,215 @@
+/* ===========================
+   TEMA • Fogo Laranja + Brilho
+   =========================== */
 
+:root{
+  --bg-dark: #0b0b0f;
+  --bg-deep: #141319;
+  --ink: #faf7f2;
+
+  --orange-1: #ff7a18;   /* base */
+  --orange-2: #ff9a1f;   /* brilho */
+  --orange-3: #ffae00;   /* centro quente */
+  --orange-4: #ff5200;   /* borda quente */
+
+  --stroke: 6px;
+  --radius: 28px;
+  --maxw: 1200px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 900px at 20% -10%, #1d1130, #0a0912 60%),
+    linear-gradient(#0a0912, var(--bg-dark));
+}
+
+/* Molduras com brilho laranja */
+.stroke{
+  outline: var(--stroke) solid #111;
+  outline-offset: -4px;
+  box-shadow:
+    0 0 0 2px rgba(255, 122, 24, .15) inset,
+    0 0 20px 6px rgba(255, 122, 24, .22),
+    0 0 48px 10px rgba(255, 174, 0, .18);
+}
+
+/* Barra superior e botões */
+.topbar{
+  max-width: var(--maxw);
+  margin: 22px auto 18px;
+  padding: 14px 18px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #1a1421 0%, #120f16 100%);
+  position: relative;
+  overflow: hidden;
+}
+.nav{ display:flex; justify-content:center; gap: 26px; }
+.pill{
+  display:inline-block;
+  padding: 11px 28px;
+  border-radius: 999px;
+  text-decoration:none;
+  color: var(--ink);
+  background: linear-gradient(180deg, #1c171f, #130f16);
+  border: 2px solid #2a222d;
+  box-shadow:
+    0 0 12px rgba(255, 122, 24,.35),
+    inset 0 0 20px rgba(255, 122, 24,.15);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.pill:hover{
+  transform: translateY(-1px);
+  border-color: #ff7a18;
+  box-shadow:
+    0 0 18px rgba(255, 174, 0,.6),
+    0 0 40px rgba(255, 122, 24,.35),
+    inset 0 0 30px rgba(255, 122, 24,.25);
+}
+
+/* Palco principal */
+.wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 18px 60px; }
+.stage{
+  display:grid;
+  grid-template-columns: 220px 1fr 220px;
+  gap: 26px;
+  padding: 28px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, #1a1421, #151018);
+}
+
+/* Colunas laterais (cards) */
+.rail{
+  padding: 18px;
+  border-radius: 24px;
+  background: #130f16;
+  display:flex; flex-direction:column; gap:18px; align-items:center;
+  box-shadow: inset 0 0 40px rgba(255,122,24,.08);
+}
+.thumb{
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #000;
+  box-shadow:
+    0 0 0 2px rgba(255, 122, 24,.25) inset,
+    0 8px 18px rgba(0,0,0,.55);
+}
+
+/* Viewer central */
+.viewer{
+  position: relative;
+  border-radius: 36px;
+  background: #130f16;
+  padding: 18px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: inset 0 0 60px rgba(255,122,24,.08);
+}
+.viewer::before{
+  content:"";
+  position:absolute; inset: 12px;
+  border-radius: 30px;
+  outline: var(--stroke) solid #111;
+  outline-offset: -6px;
+  box-shadow: 0 0 40px rgba(255,174,0,.25);
+  pointer-events:none;
+}
+.hero{
+  width: 100%; max-height: 520px; object-fit: cover; border-radius: 28px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.5);
+}
+
+/* Moldura oval */
+.oval{
+  position:absolute; inset: 14% 18%;
+  border-radius: 50% / 37%;
+  box-shadow: 0 0 0 6px #000 inset, 0 0 32px rgba(255,122,24,.4);
+  pointer-events:none;
+}
+
+/* =============================
+   EFEITO DE CHAMAS + BRILHO
+   ============================= */
+/* Adicione <div class="fire"></div> no HTML onde quiser o fogo */
+.fire{
+  --w: 420px;
+  position: relative;
+  width: var(--w);
+  height: 160px;
+  margin: 8px auto 0;
+  filter: drop-shadow(0 0 12px rgba(255,122,24,.55))
+          drop-shadow(0 0 30px rgba(255,174,0,.35));
+  pointer-events:none;
+}
+
+/* base incandescente */
+.fire::after{
+  content:"";
+  position:absolute; left:50%; bottom:-12px; transform:translateX(-50%);
+  width: calc(var(--w) * .7); height: 20px;
+  background: radial-gradient(ellipse at center,
+      rgba(255,174,0,.85) 0%, rgba(255,122,24,.55) 35%, rgba(0,0,0,0) 70%);
+  filter: blur(6px);
+}
+
+/* “línguas” de fogo */
+.fire span{
+  --x: 0; --d: 5s; --s: 1;
+  position:absolute; bottom:0; left: calc(50% + var(--x));
+  width: 24px; height: 60px; transform-origin: 50% 100%;
+  background:
+    radial-gradient(ellipse at 50% 80%, var(--orange-3) 0 40%, transparent 41%),
+    radial-gradient(ellipse at 50% 100%, var(--orange-2) 0 50%, transparent 51%),
+    radial-gradient(ellipse at 50% 120%, var(--orange-4) 0 55%, transparent 56%);
+  border-radius: 50% 50% 12px 12px / 70% 70% 30% 30%;
+  animation: rise var(--d) linear infinite,
+             flicker .9s infinite steps(2, end);
+  filter:
+    drop-shadow(0 0 10px rgba(255,122,24,.6))
+    drop-shadow(0 0 24px rgba(255,174,0,.35));
+  transform: translateX(-50%) scale(var(--s));
+}
+
+/* instâncias com variações */
+.fire span:nth-child(1){ --x:-160px; --s:1.05; --d:4.6s; }
+.fire span:nth-child(2){ --x:-120px; --s:.9;  --d:4.2s; }
+.fire span:nth-child(3){ --x:-80px;  --s:1.15; --d:5.2s; }
+.fire span:nth-child(4){ --x:-40px;  --s:1.0;  --d:4.8s; }
+.fire span:nth-child(5){ --x:0px;    --s:1.25; --d:5.4s; }
+.fire span:nth-child(6){ --x:40px;   --s:1.0;  --d:4.3s; }
+.fire span:nth-child(7){ --x:80px;   --s:1.2;  --d:5.1s; }
+.fire span:nth-child(8){ --x:120px;  --s:.95;  --d:4.5s; }
+.fire span:nth-child(9){ --x:160px;  --s:1.1;  --d:5.3s; }
+
+/* animações */
+@keyframes rise{
+  0%   { transform: translate(-50%, 0)    scale(var(--s)) rotate(-2deg); opacity:.95 }
+  50%  { transform: translate(-50%, -60px) scale(calc(var(--s)*1.05)) rotate(2deg); opacity:.85 }
+  100% { transform: translate(-50%, -120px) scale(calc(var(--s)*.9)) rotate(-2deg); opacity:0 }
+}
+@keyframes flicker{
+  0%,100%{ filter:
+      drop-shadow(0 0 10px rgba(255,122,24,.7))
+      drop-shadow(0 0 36px rgba(255,174,0,.45)); }
+  50%{ filter:
+      drop-shadow(0 0 6px rgba(255,122,24,.55))
+      drop-shadow(0 0 22px rgba(255,174,0,.35)); }
+}
+
+/* rodapé */
+.foot{ text-align:center; padding: 26px 12px 40px; opacity:.9 }
+
+/* responsivo */
+@media (max-width: 900px){
+  .stage{ grid-template-columns: 1fr; }
+  .fire{ --w: 320px; }
+}
+@media (max-width: 560px){
+  .pill{ padding: 8px 18px }
+  .fire{ --w: 260px; }
+}
