@@ -92,14 +92,14 @@ main {
     border-radius: 50px;
 }
 
-.mrbeast1 img,
-.mrbeast3 img {
+.felca_1 img,
+.felca_3 img {
     width: 138px;
     height: 137px;
     object-fit: cover;
 }
 
-.mrbeast2 {
+.felca_2 {
     width: 950px;
     height: 502px;
 
@@ -110,7 +110,7 @@ main {
 
 }
 
-.mrbeast2 img {
+.felca_2 img {
     width: 100%;
     height: 100%;
     object-fit: cover;
